@@ -10,11 +10,6 @@ const explore = [
 const legal = [
   { to: "/privacy", label: "Privacy Policy" },
   { to: "/terms", label: "Terms & Conditions" },
-  { to: "/disclaimer", label: "Disclaimer" },
-  { to: "/cookies", label: "Cookie Policy" },
-  { to: "/grievance", label: "Grievance Officer" },
-  { to: "/rera", label: "RERA Compliance" },
-  { to: "/refund", label: "Refund & Cancellation" },
 ] as const;
 
 export function Footer() {
@@ -44,24 +39,22 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 space-y-4 text-xs text-background/55">
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+        <div className="mt-8 flex flex-col gap-4 text-[11px] text-background/40 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
             {legal.map((l, i) => (
-              <span key={l.to} className="flex items-center gap-x-4">
-                <Link to={l.to} className="text-background/60 transition-colors hover:text-gold">
+              <span key={l.to} className="flex items-center gap-x-3">
+                <Link to={l.to} className="transition-colors hover:text-gold">
                   {l.label}
                 </Link>
-                {i < legal.length - 1 && <span className="text-background/25">·</span>}
+                {i < legal.length - 1 && <span className="text-background/20">·</span>}
               </span>
             ))}
           </div>
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div>© {new Date().getFullYear()} Iraivi Homes Pvt. Ltd. · RERA: TN/01/Building/00000/2024</div>
-            <div className="flex gap-6 uppercase tracking-[0.2em]">
-              <a href="#" className="hover:text-gold">Instagram</a>
-              <a href="#" className="hover:text-gold">LinkedIn</a>
-            </div>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-1 uppercase tracking-[0.15em]">
+            <a href="#" className="transition-colors hover:text-gold">Instagram</a>
+            <a href="#" className="transition-colors hover:text-gold">LinkedIn</a>
           </div>
+          <div>© {new Date().getFullYear()} Iraivi Homes Pvt. Ltd.</div>
         </div>
       </div>
     </footer>
