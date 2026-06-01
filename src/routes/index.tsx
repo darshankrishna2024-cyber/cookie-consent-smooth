@@ -1,8 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { lazy, Suspense } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
-import { Properties } from "@/components/Properties";
-import { Footer } from "@/components/Footer";
+
+const Properties = lazy(() =>
+  import("@/components/Properties").then((m) => ({ default: m.Properties })),
+);
+const Footer = lazy(() =>
+  import("@/components/Footer").then((m) => ({ default: m.Footer })),
+);
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -22,8 +28,12 @@ function Index() {
     <div className="min-h-screen bg-background">
       <Navbar transparent />
       <Hero />
-      <Properties limit={3} showCta />
-      <Footer />
+      <Suspense fallback={<div className="h-[600px] bg-background" aria-hidden />}>
+        <Properties limit={3} showCta />
+      </Suspense>
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </div>
   );
 }
