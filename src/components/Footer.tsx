@@ -45,7 +45,7 @@ export function Footer() {
 
           <div className="lg:col-span-2">
             <div className="mb-4 text-[10px] uppercase tracking-[0.3em] text-gold">Legal &amp; Compliance</div>
-            <ul className="grid grid-cols-1 gap-2.5 text-sm sm:grid-cols-2">
+            <ul className="grid grid-cols-1 gap-x-6 gap-y-1.5 text-sm sm:grid-cols-2">
               {legal.map((l) => (
                 <li key={l.to}>
                   <Link to={l.to} className="text-background/70 transition-colors hover:text-gold">
