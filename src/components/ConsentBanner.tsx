@@ -8,14 +8,19 @@ type ConsentState = "accepted" | "declined" | null;
 export function ConsentBanner() {
   const [state, setState] = useState<ConsentState>("accepted"); // optimistic: hide until we know
   const [mounted, setMounted] = useState(false);
+  const [closing, setClosing] = useState(false);
+  const [hidden, setHidden] = useState(true);
 
   useEffect(() => {
     setMounted(true);
     try {
       const stored = localStorage.getItem(STORAGE_KEY) as ConsentState;
-      setState(stored ?? null);
+      const next = stored ?? null;
+      setState(next);
+      setHidden(next !== null);
     } catch {
       setState(null);
+      setHidden(false);
     }
   }, []);
 
@@ -25,23 +30,35 @@ export function ConsentBanner() {
     } catch {
       /* ignore */
     }
-    setState(value);
+    setClosing(true);
+    // Allow exit animation to play before unmounting
+    window.setTimeout(() => {
+      setState(value);
+      setHidden(true);
+      setClosing(false);
+    }, 400);
   };
 
-  if (!mounted || state !== null) return null;
+  if (!mounted || hidden) return null;
 
   return (
     <>
       {/* dim backdrop, non-blocking click */}
       <div
         aria-hidden
-        className="fixed inset-0 z-[60] bg-emerald-deep/40 backdrop-blur-[2px] animate-in fade-in duration-500"
+        className={`fixed inset-0 z-[60] bg-emerald-deep/40 backdrop-blur-[2px] transition-opacity duration-400 ${
+          closing ? "opacity-0" : "opacity-100 animate-in fade-in duration-500"
+        }`}
       />
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby="consent-title"
-        className="fixed inset-x-0 bottom-0 z-[70] animate-in slide-in-from-bottom-8 fade-in duration-500"
+        className={`fixed inset-x-0 bottom-0 z-[70] transition-all duration-400 ${
+          closing
+            ? "translate-y-8 opacity-0"
+            : "translate-y-0 opacity-100 animate-in slide-in-from-bottom-8 fade-in duration-500"
+        }`}
       >
         <div className="mx-auto max-w-5xl px-4 pb-4 sm:pb-6 lg:px-6">
           <div className="border border-border bg-background shadow-[var(--shadow-elegant)]">
