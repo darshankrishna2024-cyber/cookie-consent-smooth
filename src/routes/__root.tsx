@@ -50,6 +50,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Curated luxury homes, villas and apartments across Chennai." },
       { property: "og:site_name", content: "Iraivi Homes" },
       { property: "og:type", content: "website" },
+      { property: "og:title", content: "Iraivi Homes — Luxury Real Estate in Chennai" },
+      { name: "twitter:title", content: "Iraivi Homes — Luxury Real Estate in Chennai" },
+      { property: "og:description", content: "Curated luxury homes, villas and apartments across Chennai." },
+      { name: "twitter:description", content: "Curated luxury homes, villas and apartments across Chennai." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/69fc9b36-0e62-49e3-b403-a072670283df/id-preview-c4c3ba55--7627b6f4-98ef-49ad-a5cc-dec12632cb76.lovable.app-1780332547684.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/69fc9b36-0e62-49e3-b403-a072670283df/id-preview-c4c3ba55--7627b6f4-98ef-49ad-a5cc-dec12632cb76.lovable.app-1780332547684.png" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
