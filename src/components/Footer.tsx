@@ -10,11 +10,6 @@ const explore = [
 const legal = [
   { to: "/privacy", label: "Privacy Policy" },
   { to: "/terms", label: "Terms & Conditions" },
-  { to: "/disclaimer", label: "Disclaimer" },
-  { to: "/cookies", label: "Cookie Policy" },
-  { to: "/grievance", label: "Grievance Officer" },
-  { to: "/rera", label: "RERA Compliance" },
-  { to: "/refund", label: "Refund & Cancellation" },
 ] as const;
 
 export function Footer() {
