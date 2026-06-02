@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { lazy, Suspense } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
+import { Reveal } from "@/components/Reveal";
 
 const Properties = lazy(() =>
   import("@/components/Properties").then((m) => ({ default: m.Properties })),
@@ -29,10 +30,14 @@ function Index() {
       <Navbar transparent />
       <Hero />
       <Suspense fallback={<div className="h-[600px] bg-background" aria-hidden />}>
-        <Properties limit={3} showCta />
+        <Reveal as="section">
+          <Properties limit={3} showCta />
+        </Reveal>
       </Suspense>
       <Suspense fallback={null}>
-        <Footer />
+        <Reveal as="div" delay={120}>
+          <Footer />
+        </Reveal>
       </Suspense>
     </div>
   );
