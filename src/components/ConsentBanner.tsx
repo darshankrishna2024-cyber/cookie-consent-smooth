@@ -46,7 +46,7 @@ export function ConsentBanner() {
       {/* dim backdrop, non-blocking click */}
       <div
         aria-hidden
-        className={`fixed inset-0 z-[60] bg-emerald-deep/40 backdrop-blur-[2px] transition-opacity duration-400 ${
+        className={`pointer-events-none fixed inset-0 z-[60] bg-emerald-deep/40 backdrop-blur-[2px] transition-opacity duration-500 ${
           closing ? "opacity-0" : "opacity-100 animate-in fade-in duration-500"
         }`}
       />
